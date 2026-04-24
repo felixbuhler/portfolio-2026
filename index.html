@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Felix Buhler</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <section id="intro">
+        <h1 id="name">Felix Buhler</h1>
+        <h2 class="serif">Designer, Art Director, Creative Technologist</h2>
+
+        <p>
+          I am a designer, art director, and creative technologist based in
+          Berlin <span class="pill">DE</span>
+        </p>
+      </section>
+      <section id="experience">
+        <div>
+          <h3>Experi<span>ence</span></h3>
+          <p class="experience">
+            <span class="year">2013—2017</span
+            ><span
+              >Dual Studies at MDRV
+              <span class="serif">DHBW Ravensburg</span></span
+            >
+          </p>
+          <p class="experience">
+            <span class="year"></span
+            ><span
+              >and <span class="censor">▀▀▀▀▀▀▀▀</span>
+              <span class="serif">in Lindau</span></span
+            >
+          </p>
+          <p class="experience">
+            <span class="year">2017</span
+            ><span
+              >BA »Die Wichtigkeit des Banalen — Die Tür«
+              <span class="serif">DHBW Ravensburg</span></span
+            >
+          </p>
+          <p class="experience">
+            <span class="year">2018—2019</span
+            ><span
+              >Junior Art Director at
+              <span class="serif"
+                ><span class="censor">▀▀▀▀▀▀▀▀</span> in Leipzig</span
+              ></span
+            >
+          </p>
+          <p class="experience">
+            <span class="year">2019—2020</span
+            ><span
+              >Junior Art Director at
+              <span class="serif"
+                ><span class="censor">▀▀▀▀▀▀▀▀</span> in Berlin</span
+              ></span
+            >
+          </p>
+          <p class="experience">
+            <span class="year">2019—2025</span
+            ><span
+              >Art Director at
+              <span class="serif"
+                ><span class="censor">▀▀▀▀▀▀▀▀</span> in Berlin</span
+              ></span
+            >
+          </p>
+          <p class="experience">
+            <span class="year">2026—Today</span
+            ><span
+              >Digital Creator / Creative Technologist at Jungle
+              <span class="serif"> in Kempten / Berlin</span></span
+            >
+          </p>
+        </div>
+      </section>
+      <section id="clients">
+        <div>
+          <h3>C<span>lien</span>ts</h3>
+          <p>
+            <span class="serif"
+              >I worked for various clients from the fields of arts, music,
+              theatre, opera, and science:</span
+            >
+            Alina Kossan, Black Roll, blum, Carado, Christina Milian, Cosmic
+            Compositions, Echt Bodensee, Femtech Germany, i+R, Jazzclub Lindau,
+            Karmaxutra, Kultur Lindau, REPORTAGEN, Van Hoecke, Weltformen, Wulle
+            Bier and many more
+          </p>
+        </div>
+      </section>
+      <div id="socials">
+        <a
+          href="https://www.instagram.com/felixbuhler/"
+          title="Felix Buhler on Instagram"
+          target="_blank"
+          >Instagram</a
+        >
+        <a
+          href="https://www.strava.com/athletes/125576403"
+          title="Felix Buhler on Strava"
+          target="_blank"
+          >Strava</a
+        >
+      </div>
+    </main>
+    <script>
+      document.querySelectorAll("a").forEach((link) => {
+        link.innerHTML = [...link.textContent]
+          .map((c) =>
+            c === " "
+              ? '<span style="width:.3em"> </span>'
+              : `<span>${c}</span>`,
+          )
+          .join("");
+
+        const setWave = (link) =>
+          link.querySelectorAll("span").forEach((s, i) => {
+            s.style.transform = `translateY(${Math.sin(i * 0.8) * 8}px)`;
+          });
+
+        setWave(link);
+        link.addEventListener("mouseenter", () =>
+          link
+            .querySelectorAll("span")
+            .forEach((s) => (s.style.transform = "")),
+        );
+        link.addEventListener("mouseleave", () => setWave(link));
+      });
+    </script>
+
+    <script>
+      const el = document.getElementById("name");
+      const text = el.textContent;
+      const r = 100;
+      const chars = [...text];
+      const angleStep = 150 / chars.length;
+      const colors = [
+        "#FF3366",
+        "#FF6B00",
+        "#FFD600",
+        "#00E676",
+        "#00B0FF",
+        "#D500F9",
+        "#FF1744",
+        "#00E5FF",
+        "#76FF03",
+        "#FF9100",
+        "#E040FB",
+        "#1DE9B6",
+      ];
+
+      el.style.position = "relative";
+      el.style.width = el.style.height = `${r * 2 + 40}px`;
+      el.textContent = "";
+
+      chars.forEach((c, i) => {
+        const span = document.createElement("span");
+        span.textContent = c;
+        span.style.cssText = `
+      position: absolute;
+      color: ${colors[i % colors.length]};
+      borderColor: ${colors[i % colors.length]};
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%)
+        rotate(${angleStep * i}deg)
+        translateY(-${r}px);
+    `;
+
+        el.appendChild(span);
+      });
+    </script>
+  </body>
+</html>
